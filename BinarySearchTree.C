@@ -1,11 +1,16 @@
 #include<stdio.h>
 #include <stdlib.h>
 
+// Structure
+
 struct node {
     int val;
     struct node *left;
     struct node *right;
 };
+
+
+// Insertion
 
 struct node* newNode(int val)
 {
@@ -28,6 +33,8 @@ struct node* insert(struct node* node, int val){
     
     return node;
 }
+
+// Traversal & Printing
 
 void inorder(struct node* root){
     if(root != NULL){
@@ -60,8 +67,26 @@ void bfs(struct node* root){
         }
     }
     
-    // free(queue);
+    free(queue);
 }
+
+
+// Searching
+
+struct node* search(struct node* root, int value)
+{
+    if(root == NULL || root->val == value)
+        return root;
+    
+    if(root->val < value)
+        return search(root->right, value);
+    
+    return search(root->left, value);
+}
+
+
+// Deletion
+
 
 int main(void) {
     
@@ -76,6 +101,15 @@ int main(void) {
  
     // Print inorder traversal of the BST
     bfs(root);
+    
+    // Key to be found
+    int key = 60;
+ 
+    // Searching in a BST
+    if (search(root, key) == NULL)
+        printf("\n %d not found\n", key);
+    else
+        printf("\n%d found\n", key);
     
     return 0;
 }
