@@ -41,7 +41,12 @@ struct node* insertLast(struct node* node ,int value)
 
 void printLinkedList(struct node* node){
     while(node != NULL){
-        printf("%d -> ", node->value);
+        if(node->next == NULL){
+            printf("%d", node->value);
+        } else {
+            printf("%d -> ", node->value);
+        }
+        
         node = node->next;
     }
 }
